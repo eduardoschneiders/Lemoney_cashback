@@ -4,11 +4,8 @@
   <% @offers.each do |offer| %>
     <li>
       <span class="advertiser_name"><%= offer.advertiser_name %></span>
-      <% if client_signed_in? %>
-        <%= link_to "Offer", offer.url %>
-      <% else %>
-        <%= link_to "Login", new_client_session_path  %>
-      <% end %>
+
+      <%= link_to "Offer", client_signed_in? ? offer.url : new_client_session_path(return_to: offer.url) %>
     </li>
   <% end %>
 </ul>
