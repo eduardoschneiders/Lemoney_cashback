@@ -1,6 +1,33 @@
 require 'rails_helper'
 
 describe Offer do
+  describe 'url validation' do
+    subject { Offer.new(url: url).valid? }
+
+    context 'when the url has invalid format' do
+      let(:url) { "foo.bar" }
+
+      it 'should not be valid' do
+        expect(subject).to eql(false)
+      end
+    end
+
+    context 'when the url is nil' do
+      let(:url) { nil }
+
+      it 'should be valid' do
+        expect(subject).to eql(true)
+      end
+    end
+
+    context 'when the url has valid format' do
+      let(:url) { "http://ebay.com" }
+
+      it 'should be valid' do
+        expect(subject).to eql(true)
+      end
+    end
+  end
   describe 'scope published' do
     subject { Offer.published }
 
