@@ -25,8 +25,7 @@ describe 'Home page' do
     within '.offers' do
       link = find(:xpath, "//span[.='Ebay']").find(:xpath, '..').find('a')
 
-      link.click
-      expect(current_path).to eql(new_client_session_path)
+      expect(link[:href]).to eql(new_client_session_path(return_to: 'http://ebay.com'))
     end
   end
 

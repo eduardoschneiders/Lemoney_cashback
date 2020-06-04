@@ -5,7 +5,7 @@ class Clients::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   def new
-    session[:client_return_to] = params[:return_to]
+    session[:client_return_to] = params[:return_to] if params[:return_to]
 
     super
   end
@@ -31,6 +31,6 @@ class Clients::SessionsController < Devise::SessionsController
   def after_sign_in_path_for(resource)
     return session[:client_return_to] if session[:client_return_to].present?
 
-    super
+    super(resource)
   end
 end
