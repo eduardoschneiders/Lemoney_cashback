@@ -1,0 +1,14 @@
+<h1>Ofertas:</h1>
+
+<ul class="offers">
+  <% @offers.each do |offer| %>
+    <li>
+      <span class="advertiser_name"><%= offer.advertiser_name %></span>
+      <% if client_signed_in? %>
+        <%= link_to "Offer", offer.url %>
+      <% else %>
+        <%= link_to "Login", new_client_session_path  %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

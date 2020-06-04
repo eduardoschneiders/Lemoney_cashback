@@ -22,12 +22,14 @@ describe Offer do
         create(:offer,
                 enabled: enabled,
                 start_at: start_at,
-                end_at: end_at)
+                end_at: end_at,
+                url: url)
       end
 
       let(:start_at) { Time.zone.now }
       let(:end_at) { Time.zone.now + 15.days }
       let(:enabled) { true }
+      let(:url) { 'http://foo.bar' }
 
       it_should_behave_like 'list the offer'
 
@@ -45,6 +47,12 @@ describe Offer do
 
       context 'when end_at is less than now' do
         let(:end_at) { Time.zone.now - 15.days }
+
+        it_should_behave_like 'dont list the offer'
+      end
+
+      context 'when url is null' do
+        let(:url) { nil }
 
         it_should_behave_like 'dont list the offer'
       end

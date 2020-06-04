@@ -5,6 +5,7 @@ FactoryBot.define do
     end_at { Time.zone.now + 15.days }
     enabled { true }
     premium { false }
+    url { 'http://foo.bar' }
 
 
     trait :premium do
