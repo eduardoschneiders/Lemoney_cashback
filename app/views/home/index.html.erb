@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h1>Ofertas:</h1>
+      <h1>Offers:</h1>
     </div>
   </div>
 
@@ -16,7 +16,13 @@
 
             <h5 class="card-title"><%= offer.advertiser_name %></h5>
 
-            <%= link_to "Shop Now", client_signed_in? ? offer.url : new_client_session_path(return_to: offer.url), class: 'btn btn-primary' %>
+            <% redirect_path = redirect_to_offer_path(offer_id: offer.id.to_s) %>
+
+            <% if client_signed_in? %>
+              <%= link_to "Shop Now", redirect_path, remote: true, method: :post, class: 'btn btn-primary' %>
+            <% else %>
+              <%= link_to "Shop Now", new_client_session_path(return_to: redirect_path), class: 'btn btn-primary' %>
+            <% end %>
           </div>
         </div>
       </li>

@@ -1,16 +1,16 @@
 require 'rails_helper'
 
 describe 'Home page' do
-  before do
-    create(:offer, advertiser_name: 'Wallmart')
-    create(:offer, advertiser_name: 'Ebay', url: 'http://ebay.com')
-    create(:offer, advertiser_name: 'Macys')
-    create(:offer, advertiser_name: 'JCPenney')
-  end
+  
+    let!(:offer1) { create(:offer, advertiser_name: 'Wallmart') }
+    let!(:offer2) { create(:offer, advertiser_name: 'Ebay', url: 'http://ebay.com') }
+    let!(:offer3) { create(:offer, advertiser_name: 'Macys') }
+    let!(:offer4) { create(:offer, advertiser_name: 'JCPenney') }
+  
 
   it 'should list the valid offers' do
     visit root_path
-    expect(page).to have_content('Ofertas:')
+    expect(page).to have_content('Offers:')
 
     within '.offers' do
       expect(page).to have_content('Wallmart')
@@ -23,9 +23,9 @@ describe 'Home page' do
   it 'should redirect to login path' do
     visit root_path
     within '.offers' do
-      link = find(:xpath, "//span[.='Ebay']").find(:xpath, '..').find('a')
+      link = find(:xpath, "//h5[.='Ebay']").find(:xpath, '..').find('a')
 
-      expect(link[:href]).to eql(new_client_session_path(return_to: 'http://ebay.com'))
+      expect(link[:href]).to eql(new_client_session_path(return_to: redirect_to_offer_path(offer_id: offer2.id.to_s)))
     end
   end
 
@@ -39,9 +39,9 @@ describe 'Home page' do
     it 'should redirect to login path' do
       visit root_path
       within '.offers' do
-        link = find(:xpath, "//span[.='Ebay']").find(:xpath, '..').find('a')
+        link = find(:xpath, "//h5[.='Ebay']").find(:xpath, '..').find('a')
 
-        expect(link[:href]).to eql('http://ebay.com')
+        expect(link[:href]).to eql(redirect_to_offer_path(offer_id: offer2.id.to_s))
       end
     end
   end
