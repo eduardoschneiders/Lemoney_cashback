@@ -39,9 +39,11 @@
                   <%= link_to "Home", root_path, class: 'nav-link' %>
                 </li>
 
-                <li class="nav-item <%= 'active' if current_page?(rewards_path) %>">
-                  <%= link_to "Rewards", rewards_path, class: 'nav-link' %>
-                </li>
+                <% if client_signed_in? %>
+                  <li class="nav-item <%= 'active' if current_page?(rewards_path) %>">
+                    <%= link_to "Rewards", rewards_path, class: 'nav-link' %>
+                  </li>
+                <% end %>
               </ul>
 
               <ul class="navbar-nav ml-auto">
