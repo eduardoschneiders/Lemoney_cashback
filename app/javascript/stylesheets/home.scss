@@ -26,6 +26,17 @@ ul.offers {
       border-radius: 2px;
     }
 
+    .description {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .expire_in {
+      font-size: 10px;
+      margin: 10px auto;
+    }
+
     .premium {
       position: absolute;
       top: -15px;

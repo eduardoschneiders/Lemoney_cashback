@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @offers = Offer.published
+    @offers = Offer.published.limit(50)
   end
 end

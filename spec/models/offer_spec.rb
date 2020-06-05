@@ -28,6 +28,7 @@ describe Offer do
       end
     end
   end
+
   describe 'scope published' do
     subject { Offer.published }
 
@@ -59,6 +60,12 @@ describe Offer do
       let(:url) { 'http://foo.bar' }
 
       it_should_behave_like 'list the offer'
+
+      context 'when has no end_at' do
+        let(:end_at) { nil }
+
+        it_should_behave_like 'list the offer'
+      end
 
       context 'when not enabled' do
         let(:enabled) { false }

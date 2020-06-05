@@ -2,7 +2,7 @@ class RedirectToOfferController < ApplicationController
   def redirect
     offer = Offer.find(params[:offer_id])
 
-    # Reward.create(client: current_client, offer: offer, value: offer.value)
+    Reward.create(client: current_client, offer: offer, value: offer.value)
 
     if request.xhr?
       render json: { redirect_to: offer.url }
