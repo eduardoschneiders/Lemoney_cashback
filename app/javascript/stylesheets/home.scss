@@ -1,0 +1,44 @@
+body {
+  margin: 10px;
+  background: #eee;
+  color: #616161;
+}
+
+ul {
+  margin: 0; 
+  padding: 0;
+  list-style-type: none;
+}
+
+ul.offers {
+
+  li {
+    margin-bottom: 10px;
+    position: relative;
+    
+    .card {
+      box-shadow: 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
+      background: #fff;
+      border-radius: 2px;
+    }
+
+    .premium {
+      position: absolute;
+      top: -15px;
+      right: -10px;
+      background: red;
+      border: solid 1px white;
+      border-radius: 8px;
+      color: white;
+      padding: 5px;
+      font-size: 0.4rem;
+      box-shadow: 2px 2px 5px 1px #a9a3a3;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  body {
+    margin: auto;
+  }
+}

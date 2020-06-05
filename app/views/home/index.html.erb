@@ -1,11 +1,24 @@
-<h1>Ofertas:</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Ofertas:</h1>
+    </div>
+  </div>
 
-<ul class="offers">
-  <% @offers.each do |offer| %>
-    <li>
-      <span class="advertiser_name"><%= offer.advertiser_name %></span>
+  <ul class="row offers">
+    <% @offers.each do |offer| %>
+      <li class="col-sm-12 col-md-6 col-lg-3">
+        <div class="card text-center">
+          <div class="card-body">
+            <% if offer.premium? %>
+              <div class="premium">premium</div>
+            <% end %>
 
-      <%= link_to "Offer", client_signed_in? ? offer.url : new_client_session_path(return_to: offer.url) %>
-    </li>
-  <% end %>
-</ul>
+            <h5 class="card-title"><%= offer.advertiser_name %></h5>
+
+            <%= link_to "Shop Now", client_signed_in? ? offer.url : new_client_session_path(return_to: offer.url), class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
